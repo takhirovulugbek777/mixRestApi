@@ -8,7 +8,7 @@ Project about note
 Add new libraries that used
 
 ```
-    pip freeze > teruirements.txt
+    pip freeze > requirements.txt
 ```
 
 That is for downloads libraries that used
