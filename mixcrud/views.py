@@ -1,5 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 
 from mixcrud.models import Student
@@ -11,9 +11,9 @@ class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     pagination_class = LimitOffsetPagination
-    filter_backends = [DjangoFilterBackend]
+    # filter_backends = [filters.Filter]
+    filter_backends = [filters.OrderingFilter]
     filterset_fields = ['name', 'score']
-
 # #########################################################
 #
 # class StudentList(generics.ListCreateAPIView):
