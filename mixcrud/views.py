@@ -1,21 +1,18 @@
-from django.shortcuts import render
-from rest_framework import mixins, generics
-
-from mixcrud.models import Student
-from mixcrud.serializers import StudentSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 
+from mixcrud.models import Student
+from mixcrud.serializers import StudentSerializer
+
 
 # Create your views here.
-class StudentPagination(PageNumberPagination):
-    page_size = 2
-
-
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     pagination_class = LimitOffsetPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name', 'score']
 
 # #########################################################
 #
